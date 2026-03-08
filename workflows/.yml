@@ -1,0 +1,14 @@
+name: Auto Reviewer Assignment
+on:
+  pull_request:
+    types: [opened, ready_for_review] # PR이 열리거나 초안에서 해제될 때
+
+jobs:
+  assign-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign Reviewer
+        uses: samspills/assign-reviewers-action@v1 # 리뷰어 할당을 돕는 액션
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: "doublekwsj"
