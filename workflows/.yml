@@ -1,16 +1,14 @@
-name: Copilot Reviewer
+name: Auto Reviewer Assignment
 on:
-  pull_request: # PR이 생성되거나 업데이트될 때 실행
-    types: [opened, synchronize]
+  pull_request:
+    types: [opened, ready_for_review] # PR이 열리거나 초안에서 해제될 때
 
 jobs:
-  review:
+  assign-reviewer:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Copilot Code Review
-        uses: (사용할 Copilot 리뷰어 액션 경로)
+      - name: Assign Reviewer
+        uses: samspills/assign-reviewers-action@v1 # 리뷰어 할당을 돕는 액션
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: "doublekwsj"
