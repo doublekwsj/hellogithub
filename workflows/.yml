@@ -1,0 +1,16 @@
+name: Copilot Reviewer
+on:
+  pull_request: # PR이 생성되거나 업데이트될 때 실행
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Copilot Code Review
+        uses: (사용할 Copilot 리뷰어 액션 경로)
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
